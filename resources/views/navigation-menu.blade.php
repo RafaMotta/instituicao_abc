@@ -7,9 +7,9 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
                         {{-- <x-jet-application-mark class="block h-9 w-auto" /> --}}
-                        <span style="font-size: 50%">INSTITUIÇÃO</span>
+                        <span style="font-size: 90%;font-weight: bold">INSTITUIÇÃO</span>
                         <br>
-                        <span style="font-size: 80%">ABC</span>
+                        <span style="font-size: 100%;font-weight: bold">ABC</span>
                     </a>
                 </div>
 
@@ -152,6 +152,15 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('turmas') }}" :active="request()->routeIs('turmas')">
+                {{ __('Turmas') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('materiais') }}" :active="request()->routeIs('materiais')">
+                {{ __('Materiais') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('disciplinas') }}" :active="request()->routeIs('disciplinas')">
+                {{ __('Disciplinas') }}
+            </x-jet-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -187,7 +196,7 @@
 
                     <x-jet-responsive-nav-link href="{{ route('logout') }}"
                                    @click.prevent="$root.submit();">
-                        {{ __('Log Out') }}
+                        {{ __('Sair') }}
                     </x-jet-responsive-nav-link>
                 </form>
 

@@ -4,15 +4,14 @@ import Alpine from 'alpinejs';
 window.Alpine = Alpine;
 Alpine.start();
 
+//Import Vue Components
 import { createApp } from 'vue';
-import app from './Components/app.vue'
 import dashboard from './Components/dashboard.vue'
 import turmas from './Components/turmas.vue'
 import materiais from './Components/materiais.vue'
 import disciplinas from './Components/disciplinas.vue'
 
-
-createApp(app).mount("#app")
+//Render Vue Components
 createApp(dashboard).mount("#dashboard")
 createApp(turmas).mount("#turmas")
 createApp(materiais).mount("#materiais")

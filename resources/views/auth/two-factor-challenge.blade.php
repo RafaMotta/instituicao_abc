@@ -1,7 +1,9 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <span style="font-size: 90%;font-weight: bold">INSTITUIÇÃO</span>
+            <br>
+            <span style="font-size: 100%;font-weight: bold">ABC</span>
         </x-slot>
 
         <div x-data="{ recovery: false }">
