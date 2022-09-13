@@ -6,7 +6,10 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        {{-- <x-jet-application-mark class="block h-9 w-auto" /> --}}
+                        <span style="font-size: 50%">INSTITUIÇÃO</span>
+                        <br>
+                        <span style="font-size: 80%">ABC</span>
                     </a>
                 </div>
 
@@ -17,6 +20,12 @@
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('turmas') }}" :active="request()->routeIs('turmas')">
                         {{ __('Turmas') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('materiais') }}" :active="request()->routeIs('materiais')">
+                        {{ __('Materiais') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('disciplinas') }}" :active="request()->routeIs('disciplinas')">
+                        {{ __('Disciplinas') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -143,9 +152,6 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
-            {{-- <x-jet-responsive-nav-link href="{{ route('turmas') }}" :active="request()->routeIs('turmas')">
-                {{ __('Turmas') }}
-            </x-jet-responsive-nav-link> --}}
         </div>
 
         <!-- Responsive Settings Options -->

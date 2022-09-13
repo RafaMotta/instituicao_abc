@@ -15,19 +15,29 @@ use App\Http\Controllers\GoogleController;
 |
 */
 
-
-// Route::get('/logout', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::middleware(['auth:sanctum', 'verified'])
 ->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
 Route::middleware(['auth:sanctum', 'verified'])
 ->get('/turmas', function () {
     return view('turmas');
 })->name('turmas');
+
+Route::middleware(['auth:sanctum', 'verified'])
+->get('/materiais', function () {
+    return view('materiais');
+})->name('materiais');
+
+Route::middleware(['auth:sanctum', 'verified'])
+->get('/disciplinas', function () {
+    return view('disciplinas');
+})->name('disciplinas');
 
 Route::controller(GoogleController::class)->group(function(){
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
