@@ -6,10 +6,10 @@ Alpine.start();
 
 //Import Vue Components
 import { createApp } from 'vue';
-import dashboard from './Components/dashboard.vue'
-import turmas from './Components/turmas.vue'
-import materiais from './Components/materiais.vue'
-import disciplinas from './Components/disciplinas.vue'
+import dashboard from './Components/dashboard.vue';
+import turmas from './Components/turmas.vue';
+import materiais from './Components/materiais.vue';
+import disciplinas from './Components/disciplinas.vue';
 
 //Render Vue Components
 createApp(dashboard).mount("#dashboard")

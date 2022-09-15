@@ -8,6 +8,7 @@ use Exception;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class GoogleController extends Controller
 {
@@ -37,6 +38,10 @@ class GoogleController extends Controller
             if($finduser){
 
                 Auth::login($finduser);
+                $userToken = Auth::user();
+                $token = $userToken->createToken('MyApp')->plainTextToken;
+                $finduser->api_token = $token;
+                $finduser->save();
 
                 return redirect()->intended('dashboard');
 
@@ -44,10 +49,14 @@ class GoogleController extends Controller
                 $newUser = User::updateOrCreate(['email' => $user->email],[
                         'name' => $user->name,
                         'google_id'=> $user->id,
-                        'password' => Hash::make('master')
+                        'password' => Hash::make('master'),
                     ]);
 
                 Auth::login($newUser);
+                $userToken = Auth::user();
+                $token = $userToken->createToken('MyApp')->plainTextToken;
+                $newUser->api_token = $token;
+                $newUser->save();
 
                 return redirect()->intended('dashboard');
             }

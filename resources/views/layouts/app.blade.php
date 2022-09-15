@@ -9,12 +9,31 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-
         <!-- Styles -->
         @livewireStyles
+        <script>
+            window.API_URL = '{{ config('app.api_url', '') }}';
+
+            @if (Auth::check())
+                window.loggedUser = @json(Auth::user());
+            @else
+                window.loggedUser = null;
+            @endif
+
+            // var DEBUG = false;
+            // if(!DEBUG){
+            //     if(!window.console) window.console = {};
+            //     var methods = ["log", "debug", "warn", "info"];
+            //     for(var i=0;i<methods.length;i++){
+            //         console[methods[i]] = function(){};
+            //     }
+            // }
+        </script>
     </head>
     <body class="font-sans antialiased">
         {{-- <x-jet-banner /> --}}
