@@ -14,12 +14,12 @@
                 <th>Data Atualização</th>
                 <th class="col-2">Editar /Deletar</th>
             </thead>
-            <tr v-for="(item, index) in items" :key="index">
+            <tr v-for="(item, index) in items" :key="item.id">
                 <td>
                     <span>{{item.id}}</span>
                 </td>
                 <td>
-                    <input v-if="item.edit" type="text" v-model="item.desc" v-on:keyup.enter="item.edit = !item.edit">
+                    <input v-if="item.edit" type="text" v-model="item.desc" v-on:keyup.enter="editItem(item);item.edit = !item.edit">
                     <span v-else>{{item.desc}} </span>
                 </td>
                 <td>
@@ -30,7 +30,7 @@
                 </td>
                 <td>
                     <button @click="item.edit = !item.edit" class="btn btn-info"><i class="fa fa-edit"></i></button>
-                    <button @click="removeItem(index)" class="btn btn-danger"><i class="fa fa-trash-alt"></i></button>
+                    <button @click="removeItem(index, item.id)" class="btn btn-danger"><i class="fa fa-trash-alt"></i></button>
                 </td>
             </tr>
         </table>
@@ -56,9 +56,7 @@ export default ({
         }
     },
     watch: {
-        item(newVal, oldVal){
 
-        }
     },
 	methods: {
         getItems(){
@@ -80,11 +78,45 @@ export default ({
             });
         },
         addItem(){
-            this.items.push({desc:this.item.desc, edit: false});
+            let descricao = this.item.desc;
             this.item = [];
+            axios
+            .post('/turmas', {
+                descricao: descricao
+            })
+            .then((res) => {
+                this.items.push({
+                    id: res.data.id,
+                    desc: res.data.descricao,
+                    data_criacao: res.data.created_at,
+                    data_atualizacao: res.data.updated_at,
+                    edit: false
+                });
+            })
+            .catch((error) => {
+                console.log(error.res.data);
+            });
         },
-        removeItem(index){
+        editItem(item){
+            axios
+            .put('/turmas/'+ item.id + '?descricao='+ item.desc)
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((error) => {
+                console.log(error.res.data);
+            });
+        },
+        removeItem(index, itemId){
             this.items.splice(index, 1);
+            axios
+            .delete('/turmas/'+ itemId)
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((error) => {
+                console.log(error.res.data);
+            });
         }
     }
 })

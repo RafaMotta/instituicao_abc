@@ -28,6 +28,7 @@ class TurmasController extends Controller
         $validData = $request->validate([
             'descricao' => 'string|max:100'
         ]);
+
         return Turma::create($validData);
     }
 
